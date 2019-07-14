@@ -1,10 +1,27 @@
-const express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 
+app.set('view engine', 'ejs');
+app.use(bodyParser.json());
+
+
+const homeRouter = require('./routes/home');
+const booksRouter = require('./routes/books');
+
+const sequelize = require('./configs/sequelize');
+
+const Books = require('./models/books');
+
+app.use(homeRouter);
+app.use('/books', booksRouter);
+
 app.get('/', (req,res) =>{
-	res.send('Kelompok 6')
+	res.render('index')
 });
 
 app.listen(3000, () => {
-	console.log('Server Started')
+	console.log('Server Started');
+	 sequelize.sync();
 })

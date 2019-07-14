@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 
 const homeRouter = require('./routes/home');
 const booksRouter = require('./routes/books');
+const userRouter = require('./routes/User');
 
 const sequelize = require('./configs/sequelize');
 
@@ -16,6 +17,7 @@ const Books = require('./models/books');
 
 app.use(homeRouter);
 app.use('/books', booksRouter);
+app.use('/user', userRouter);
 
 app.get('/', (req,res) =>{
 	res.render('index')

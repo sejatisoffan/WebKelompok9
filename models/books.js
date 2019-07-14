@@ -4,7 +4,6 @@ const sequelize = require('../configs/sequelize');
 
 class Books extends Sequelize.Model{}
 
-
 Books.init({
 	kode: Sequelize.STRING,
 	kategori: Sequelize.STRING,

@@ -27,3 +27,31 @@ module.exports.postRegister = (req,res) => {
 	})
 
 }
+
+module.exports.postLogin = (req, res) => {
+	User.findOne({
+		where: {
+			email: req.body.email
+		}
+	})
+	.then(user => {
+		if (!user){
+			res.status(400).send('Username not found');
+		}
+		bcrypt.compare(req.body.password, user.get('password'), function (err, isMatch){
+			if (err){
+				res.status(400).send('Password Error')
+			};
+			if (isMatch){
+				jwt.sign({ id: user.get('id')}, process.env.SECRETKEY, (error,token) => {
+					res.json({ token: token });
+				})
+			} else {
+				res.status(400).send('Wrong Password')
+			}
+		})
+	})
+		.catch((error) => {
+			console.log(error);
+		});
+}

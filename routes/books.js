@@ -6,14 +6,13 @@ const booksController = require('../controllers/books');
 
 const auth = require('../configs/auth');
 
-router.get('/', booksController.getAllBooks);
+router.get('/', auth.verifyToken, booksController.getAllBooks);
 
 router.post('/add', booksController.createBooks);
 
-router.put('/:id', booksController.updateBooks);
+router.put('/update:id', booksController.updateBooks);
 
-
-//router.delete('/:id', booksController.deleteProduct);
+router.delete('/delete:id', booksController.deleteBooks);
 
 
 module.exports = router;

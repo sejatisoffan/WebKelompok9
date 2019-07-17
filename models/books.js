@@ -6,6 +6,7 @@ class Books extends Sequelize.Model{}
 
 Books.init({
 	kode: Sequelize.STRING,
+	judul: Sequelize.STRING,
 	kategori: Sequelize.STRING,
 	penulis: Sequelize.STRING,
 	penerbit: Sequelize.STRING,

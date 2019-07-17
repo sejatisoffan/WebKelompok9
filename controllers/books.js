@@ -1,17 +1,18 @@
 const Books = require('../models/books');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 module.exports.getAllBooks = (req,res)=>{
-	jwt.verify(req.token, process.env.SECRETKEY,(error,authData)=>{
-		if(error){
+	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
+		if (error) {
 			res.sendStatus(403);
-		}else{
+		}else if(authData){
 			res.json({
-				message: "OK",
-				authData:authData
-			})
+				message:'OK',
+				authData : authData
+			});
 		}
 	})
 
@@ -50,6 +51,20 @@ module.exports.updateBooks = (req,res) => {
 		}
 	}
 	Books.update(values,conditions)
+	.then((books) => {
+		res.json(books);
+	}).catch((error) => {
+		throw error;
+	})
+}
+
+module.exports.deleteBooks = (req,res)=>{
+	let conditions ={
+		where:{
+			id: req.params.id
+		}
+	}
+	Books.destroy(conditions)
 	.then((books) => {
 		res.json(books);
 	}).catch((error) => {

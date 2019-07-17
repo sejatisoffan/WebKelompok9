@@ -12,7 +12,9 @@ module.exports.postRegister = (req,res) => {
 	User.findOrCreate({
 			where: { email: req.body.email },
 			defaults: {
-				username: req.body.username,
+				nama: req.body.nama,
+				alamat: req.body.alamat,
+				no_telp: req.body.no_telp,
 				email: req.body.email,
 				password: hash,
 				roles: req.body.roles
@@ -38,16 +40,20 @@ module.exports.postLogin = (req, res) => {
 		if (!user){
 			res.status(400).send('Username not found');
 		}
+		
 		bcrypt.compare(req.body.password, user.get('password'), function (err, isMatch){
 			if (err){
-				res.status(400).send('Password Error')
+				res.status(400).send('Password Error');
 			};
+
 			if (isMatch){
 				jwt.sign({ id: user.get('id')}, process.env.SECRETKEY, (error,token) => {
-					res.json({ token: token });
+					res.json({ 
+						token: token 
+					});
 				})
 			} else {
-				res.status(400).send('Wrong Password')
+				res.status(400).send('Wrong Password');
 			}
 		})
 	})

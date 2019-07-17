@@ -5,7 +5,9 @@ const sequelize = require('../configs/sequelize');
 class User extends Sequelize.Model {}
 
 User.init({
-	username: Sequelize.STRING,
+	nama: Sequelize.STRING,
+	alamat: Sequelize.STRING,
+	no_telp: Sequelize.INTEGER,
 	email: Sequelize.STRING,
 	password: Sequelize.STRING,
 	roles: Sequelize.STRING

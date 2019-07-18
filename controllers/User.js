@@ -47,7 +47,7 @@ module.exports.postLogin = (req, res) => {
 			};
 
 			if (isMatch){
-				jwt.sign({ id: user.get('id')}, process.env.SECRETKEY, (error,token) => {
+				jwt.sign({ id: user.get('id'), roles: user.get('roles')}, process.env.SECRETKEY, (error,token) => {
 					res.json({ 
 						token: token 
 					});

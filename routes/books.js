@@ -8,11 +8,12 @@ const auth = require('../configs/auth');
 
 router.get('/', auth.verifyToken, booksController.getAllBooks);
 
-router.post('/add', booksController.createBooks);
+router.post('/add', auth.verifyToken, booksController.createBooks);
 
-router.put('/update:id', booksController.updateBooks);
+router.put('/update:id', auth.verifyToken, booksController.updateBooks);
 
-router.delete('/delete:id', booksController.deleteBooks);
+router.delete('/delete:id', auth.verifyToken, booksController.deleteBooks);
+
 
 
 module.exports = router;

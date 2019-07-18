@@ -5,35 +5,42 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports.getAllBooks = (req,res)=>{
+
 	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
-		if (error) {
+		if (authData['roles'] == "user") {
+			
+		}else{
 			res.sendStatus(403);
-		}else if(authData){
-			res.json({
-				message:'OK',
-				authData : authData
-			});
 		}
 	})
 
 }
 
 module.exports.createBooks = (req,res)=>{
+	
+	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
+			if (authData['roles'] == "admin") {
+				Books.create({
+					kode: req.body.kode,
+					kategori: req.body.kategori,
+					penulis: req.body.penulis,
+					penerbit: req.body.penerbit,
+					tahun: req.body.tahun,
+					stok: req.body.stok,
+					harga: req.body.harga
+				}).then((books)=>{
+					res.json(books);
+				}).catch((error) => {
+					throw error;
+				})
+			}else{
+				res.sendStatus(403);
+			}
+		})
 
-	Books.create({
-		kode: req.body.kode,
-		kategori: req.body.kategori,
-		penulis: req.body.penulis,
-		penerbit: req.body.penerbit,
-		tahun: req.body.tahun,
-		stok: req.body.stok,
-		harga: req.body.harga
-	}).then((books)=>{
-		res.json(books);
-	}).catch((error) => {
-		throw error;
-	})
-}
+	}
+	
+
 
 module.exports.updateBooks = (req,res) => {
 	let values = {
@@ -50,11 +57,17 @@ module.exports.updateBooks = (req,res) => {
 			id: req.params.id
 		}
 	}
-	Books.update(values,conditions)
-	.then((books) => {
-		res.json(books);
-	}).catch((error) => {
-		throw error;
+	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
+		if (authData['roles'] == "admin") {
+			Books.update(values,conditions)
+				.then((books) => {
+				res.json(books);
+				}).catch((error) => {
+				throw error;
+				})
+		}else{
+			res.sendStatus(403);
+		}
 	})
 }
 
@@ -64,10 +77,17 @@ module.exports.deleteBooks = (req,res)=>{
 			id: req.params.id
 		}
 	}
-	Books.destroy(conditions)
-	.then((books) => {
-		res.json(books);
-	}).catch((error) => {
-		throw error;
+	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
+		if (authData['roles'] == "admin") {
+			Books.destroy(conditions)
+				.then((books) => {
+					res.json(books);
+				}).catch((error) => {
+					throw error;
+				})
+		}else{
+			res.sendStatus(403);
+		}
 	})
+	
 }

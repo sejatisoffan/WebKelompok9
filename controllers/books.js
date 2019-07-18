@@ -8,7 +8,38 @@ module.exports.getAllBooks = (req,res)=>{
 
 	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
 		if (authData['roles'] == "user") {
-			
+			Books
+				.findAll()
+			.then((books) => {
+				res.json(books);
+			})
+			.catch((error) => {
+				console.log("error");
+			})
+		}else{
+			res.sendStatus(403);
+		}
+	})
+
+}
+
+module.exports.detailBooks = (req,res)=>{
+
+	jwt.verify(req.token, process.env.SECRETKEY,(error, authData)=>{
+		if (authData['roles'] == "user") {
+			Books
+				.findOne({
+					where : {
+						id: req.params.id
+					}
+				})
+				.then((books) => {
+					res.json(books);
+				})
+				.catch((error) => {
+					console.log("error");
+				})
+
 		}else{
 			res.sendStatus(403);
 		}

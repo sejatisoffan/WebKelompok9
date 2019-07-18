@@ -14,6 +14,6 @@ router.put('/update:id', auth.verifyToken, booksController.updateBooks);
 
 router.delete('/delete:id', auth.verifyToken, booksController.deleteBooks);
 
-
+router.get('/detail:id', auth.verifyToken, booksController.detailBooks);
 
 module.exports = router;

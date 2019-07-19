@@ -6,14 +6,7 @@ const orderController = require('../controllers/order');
 
 const auth = require('../configs/auth');
 
-router.get('/',auth.verifyToken, orderController.getAllOrder);
-
-router.post('/add', orderController.createOrder);
-
-router.put('/:id', orderController.updateOrder);
-
-
-//router.delete('/:id', OrderController.deleteProduct);
+router.post('/',auth.verifyToken, orderController.orderBooks);
 
 
 module.exports = router;

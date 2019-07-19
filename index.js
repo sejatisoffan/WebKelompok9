@@ -7,22 +7,19 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 
 
-const homeRouter = require('./routes/home');
 const booksRouter = require('./routes/books');
 const userRouter = require('./routes/user');
+const orderRouter = require('./routes/order');
 
 const sequelize = require('./configs/sequelize');
 
-//const Books = require('./models/books');
+const Books = require('./models/books');
 const User = require('./models/user');
+const Order = require('./models/order');
 
-app.use(homeRouter);
 app.use('/books', booksRouter);
 app.use('/user', userRouter);
-
-app.get('/', (req,res) =>{
-	res.render('index')
-});
+app.use('/order', orderRouter);
 
 app.listen(3209, () => {
 	console.log('Server Started');

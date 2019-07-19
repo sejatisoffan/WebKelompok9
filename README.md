@@ -1,10 +1,10 @@
 # Kelompok 9 3IF-02
 Tugas Besar P. Web Kelompok 9
 
-Anggota Kwlompok
-1.Herli Herviansyah (161014060)
-2.Muhammad Andre Janah (161014072)
-3.Sejati Muhammad WS (160613057)
+Anggota Kelompok
+1. Herli Herviansyah (161014060)
+2. Muhammad Andre Janah (161014072)
+3. Sejati Muhammad WS (160613057)
 
 
 REGISTER

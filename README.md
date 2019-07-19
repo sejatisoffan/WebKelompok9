@@ -12,6 +12,11 @@ http://159.89.194.18:3209/user/register
 
 LOGIN
 http://159.89.194.18:3209/user/login
+email : admin@yahoo.com
+password : admin
+
+email : user@yahoo.com
+password : user
 
 USER 
 1. View All Book

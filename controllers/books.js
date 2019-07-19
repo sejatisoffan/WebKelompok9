@@ -54,6 +54,7 @@ module.exports.createBooks = (req,res)=>{
 			if (authData['roles'] == "admin") {
 				Books.create({
 					kode: req.body.kode,
+					judul: req.body.judul,
 					kategori: req.body.kategori,
 					penulis: req.body.penulis,
 					penerbit: req.body.penerbit,

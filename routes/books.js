@@ -6,7 +6,10 @@ const booksController = require('../controllers/books');
 
 const auth = require('../configs/auth');
 
+
 router.get('/',auth.verifyToken, booksController.getAllBooks);
+
+router.get('/:id',auth.verifyToken, booksController.detailBooks);
 
 router.post('/',auth.verifyToken, booksController.createBooks);
 

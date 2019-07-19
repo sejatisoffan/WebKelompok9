@@ -8,24 +8,24 @@ Anggota Kelompok
 
 
 REGISTER
-http://localhost:3209/user/register
+http://159.89.194.18:3209/user/register
 
 LOGIN
-http://localhost:3209/user/login
+http://159.89.194.18:3209/user/login
 
 USER 
 1. View All Book
-    http://localhost:3209/books/    
+    http://159.89.194.18:3209/books/    
 2. View Detail Book
-    http://localhost:3209/books/3
+    http://159.89.194.18:3209/books/3
 3. Order Book
-    http://localhost:3209/order/
+    http://159.89.194.18:3209/order/
 
 ADMIN
 1. Create Book
-    http://localhost:3209/books/
+    http://159.89.194.18:3209/books/
 2. Update Book
-    http://localhost:3209/books/3
+    http://159.89.194.18:3209/books/3
 3. Delete Book
-    http://localhost:3209/books/3
+    http://159.89.194.18:3209/books/3
 
